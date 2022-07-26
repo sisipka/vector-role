@@ -1,0 +1,25 @@
+---
+# tasks file for vector-role
+- name: Download distrib vector
+  become: true
+  get_url:
+    url: "https://packages.timber.io/vector/{{ vector_version }}/vector_{{ vector_version }}-1_amd64.deb"
+    dest: "/tmp/vector-{{ vector_version }}.deb"
+    mode: 0755
+    timeout: 60
+  run_once: True
+  register: get_vector
+  until: get_vector is succeeded
+- name: Install vector deb
+  become: true
+  ansible.builtin.apt:
+    deb: /tmp/vector-{{ vector_version }}.deb
+- name: Template it
+  become: true
+  template:
+    src: "template/vector.cfg.j2"
+    dest: "{{ vector_home }}"
+    backup: True
+  register: template_result
+  tags: vector_template
+  notify: Start vector
