@@ -13,8 +13,7 @@
 - name: Install vector deb
   become: true
   ansible.builtin.apt:
-    update_cache: yes
-    deb: /tmp/vector-{{ vector_version }}.deb
+    deb: "/tmp/vector-{{ vector_version }}.deb"
 - name: Template it
   become: true
   template:
