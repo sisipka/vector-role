@@ -4,4 +4,5 @@
   become: true
   ansible.builtin.service:
     name: vector
+    pattern: "/usr/bin/vector"
     state: started
