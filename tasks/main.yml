@@ -1,15 +1,4 @@
 ---
-# tasks file for vector-role
-- name: Run update
-  ansible.builtin.apt:
-    update_cache: yes  
-- name: Instal curl
-  become: true
-  ansible.builtin.apt:
-    name: 
-      - curl
-      - sudo
-    state: latest
 - name: Download distrib vector
   become: true
   get_url:

@@ -3,7 +3,7 @@ dependency:
   name: galaxy
   enabled: true
 driver:
-  name: docker
+  name: podman
 platforms:
   - name: instance
     image: docker.io/pycontribs/ubuntu:latest
